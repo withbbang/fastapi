@@ -2,5 +2,5 @@
 /include
 /lib
 /Scripts
-/__pycache__
+**/__pycache__
 pyvenv.cfg
