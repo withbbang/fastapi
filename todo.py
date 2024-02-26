@@ -39,3 +39,14 @@ async def update_todo(
             return {"message": "Todo updated successfully."}
 
     return {"message": "Todo with supplied ID doesn't exist"}
+
+
+@todo_router.delete("/todo/{id}")
+async def delete_single_todo(id: int) -> dict:
+    for idx in range(len(todo_list)):
+        todo = todo_list[idx]
+        if todo.id == id:
+            todo_list.pop(idx)
+            return {"message": "Todo deleted successfully"}
+
+    return {"message": "Todo with supplied ID doesn't exist"}
