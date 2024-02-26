@@ -1,5 +1,7 @@
+# import uvicorn
 from fastapi import FastAPI
 from routes.todo import todo_router
+from routes.users import user_router
 
 app = FastAPI()
 
@@ -10,3 +12,7 @@ async def welcome() -> dict:
 
 
 app.include_router(todo_router)
+app.include_router(user_router, prefix="/user")
+
+# if __name__ == "__index__":
+#     uvicorn.run("index:app", host="127.0.0.1", port=8000, reload=True)

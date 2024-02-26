@@ -7,4 +7,4 @@ class Todo(BaseModel):
 
     # TODO: Config - 예시 파라미터
     class Config:
-        schema_extra = {"example": {"id": 0, "item": "Example Schema!"}}
+        json_schema_extra = {"example": {"id": 0, "item": "Example Schema!"}}
