@@ -6,12 +6,14 @@ from models.events import Event
 class User(BaseModel):
     email: EmailStr
     password: str
-    events: Optional[List[Event]]
+    username: str
+    events: Optional[List[Event]] = None
 
     class Config:
         json_schema_extra = {
             "example": {
                 "email": "fastapi@packt.com",
+                "password": "fuckyou",
                 "username": "strong!!!",
                 "events": [],
             }
@@ -24,6 +26,8 @@ class UserSignIn(BaseModel):
 
     class Config:
         json_schema_extra = {
-            "example": "fastapi@packt.com",
-            "password": "strong!!!",
+            "example": {
+                "email": "fastapi@packt.com",
+                "password": "strong!!!",
+            }
         }

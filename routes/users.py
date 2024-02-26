@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, status
 from models.users import User, UserSignIn
 
-user_router = APIRouter(tags=["User"])
+user_router = APIRouter(tags=["User"])  # tags: swagger에서 소제목으로 표시 됨
 
 users = {}
 
@@ -18,7 +18,7 @@ async def sign_new_user(data: User) -> dict:
     return {"message": "User successfully registered!"}
 
 
-@user_router.post("signin")
+@user_router.post("/signin")
 async def sign_user_in(user: UserSignIn) -> dict:
     if user.email not in users:
         raise HTTPException(
