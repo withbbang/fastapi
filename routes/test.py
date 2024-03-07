@@ -1,6 +1,8 @@
 import os
 from fastapi import APIRouter
+from typing import List
 from config import cursor
+from models.member import Member
 
 test_router = APIRouter()
 
@@ -9,6 +11,6 @@ test_router = APIRouter()
 async def test() -> dict:
     cursor.execute("SELECT * FROM MEMBER")
 
-    print(cursor.fetchall())
+    members = cursor.fetchall()
 
-    return {"response": "HELLO"}
+    return {"result": members}
