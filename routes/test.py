@@ -1,7 +1,6 @@
 import os
 from fastapi import APIRouter
-from typing import List
-from config import cursor
+from database.connection import cursor
 from models.member import Member
 
 test_router = APIRouter()
