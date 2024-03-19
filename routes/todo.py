@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Path, HTTPException, status
 from models.todo import Todo
 from models.todoItem import TodoItem, TodoItems
+from database.connection import Base
 
 todo_router = APIRouter()
 
