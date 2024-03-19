@@ -4,6 +4,9 @@ from routes.todo import todo_router
 from routes.users import user_router
 from routes.events import event_router
 from routes.test import test_router
+from database.connection import Base, engine
+
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 

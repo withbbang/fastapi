@@ -5,7 +5,7 @@ class TestBase(BaseModel):
     name: str
 
 
-class Test(TestBase):
+class TestModel(TestBase):
     id: int
 
     class Config:
