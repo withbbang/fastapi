@@ -1,4 +1,12 @@
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
+from sqlalchemy import (
+    Boolean,
+    Column,
+    ForeignKey,
+    Integer,
+    String,
+    Date,
+    TIMESTAMP,
+)
 from sqlalchemy.orm import relationship
 
 from database.connection import Base
@@ -13,7 +21,7 @@ class Member(Base):
         unique=True,
     )
     name = Column(String)
-    birthDt = Column(String)
+    birthDt = Column(Date)
     levelFK = Column(String)
     degreeFK = Column(String)
     phoneNo = Column(String)
@@ -23,11 +31,11 @@ class Member(Base):
     dormancyYn = Column(String, default="N")
     leaveYn = Column(String, default="N")
     banYn = Column(String, default="N")
-    joinDt = Column(String)
-    createDt = Column(String)
-    updateDt = Column(String)
-    leaveDt = Column(String)
-    banDt = Column(String)
+    joinDt = Column(Date)
+    createDt = Column(TIMESTAMP)
+    updateDh = Column(TIMESTAMP)
+    leaveDt = Column(TIMESTAMP)
+    banDt = Column(TIMESTAMP)
     image = Column(String)
     updateReason = Column(String)
     dormancyReason = Column(String)

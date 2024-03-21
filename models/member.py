@@ -1,9 +1,10 @@
 from pydantic import BaseModel
+from datetime import date, datetime
 
 
 class MemberBase(BaseModel):
     name: str
-    birthDt: str
+    birthDt: date
     levelFK: str
     degreeFK: str
     phoneNo: str | None = None
@@ -13,11 +14,11 @@ class MemberBase(BaseModel):
     dormancyYn: str
     leaveYn: str
     banYn: str
-    joinDt: str
-    createDt: str
-    updateDt: str | None = None
-    leaveDt: str | None = None
-    banDt: str | None = None
+    joinDt: date
+    createDt: datetime
+    updateDh: datetime | None = None
+    leaveDt: datetime | None = None
+    banDt: datetime | None = None
     image: str | None = None
     updateReason: str | None = None
     dormancyReason: str | None = None
@@ -29,7 +30,7 @@ class MemberBase(BaseModel):
         json_schema_extra = {"example": {"id": 0, "name": "상남자"}}
 
 
-class Member(MemberBase):
+class MemberResponse(MemberBase):
     id: str
 
     class Config:
