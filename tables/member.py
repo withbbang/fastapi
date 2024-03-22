@@ -36,6 +36,7 @@ class Member(Base):
     leaveReason = Column(String)
     banReason = Column(String)
 
+    member_winwindSubscribe = relationship("WinwindSubscribe", back_populates="member")
     member_admin = relationship("Admin", back_populates="member")
 
     level = relationship("Level", back_populates="level_member")
