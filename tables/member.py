@@ -7,7 +7,6 @@ from sqlalchemy import (
     TIMESTAMP,
 )
 from sqlalchemy.orm import relationship
-
 from database.connection import Base
 
 
@@ -36,6 +35,8 @@ class Member(Base):
     dormancyReason = Column(String)
     leaveReason = Column(String)
     banReason = Column(String)
+
+    member_admin = relationship("Admin", back_populates="member")
 
     level = relationship("Level", back_populates="level_member")
     degree = relationship("Degree", back_populates="degree_member")
