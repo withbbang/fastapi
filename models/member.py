@@ -16,8 +16,8 @@ class MemberBase(BaseModel):
     banYn: str
     joinDt: date
     createDt: datetime
-    updateDh: datetime | None = None
-    leaveDt: datetime | None = None
+    updateDt: datetime | None = None
+    leaveDt: date | None = None
     banDt: datetime | None = None
     image: str | None = None
     updateReason: str | None = None

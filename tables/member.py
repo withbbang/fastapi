@@ -22,8 +22,8 @@ class Member(Base):
     )
     name = Column(String)
     birthDt = Column(Date)
-    levelFK = Column(String)
-    degreeFK = Column(String)
+    levelFK = Column(String) #ForeignKey
+    degreeFK = Column(String) #ForeignKey
     phoneNo = Column(String)
     winwinYn = Column(String, default="N")
     sex = Column(String, default="M")
@@ -33,8 +33,8 @@ class Member(Base):
     banYn = Column(String, default="N")
     joinDt = Column(Date)
     createDt = Column(TIMESTAMP)
-    updateDh = Column(TIMESTAMP)
-    leaveDt = Column(TIMESTAMP)
+    updateDt = Column(TIMESTAMP)
+    leaveDt = Column(Date)
     banDt = Column(TIMESTAMP)
     image = Column(String)
     updateReason = Column(String)
