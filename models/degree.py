@@ -3,7 +3,7 @@ from datetime import date, datetime
 
 
 # 기수 모델
-class DegreenBase(BaseModel):
+class DegreeBase(BaseModel):
     degree: str
     description: str
 
@@ -12,7 +12,7 @@ class DegreenBase(BaseModel):
         json_schema_extra = {"example": {"id": 0, "name": "상남자"}}
 
 
-class DegreenResponse(DegreenBase):
+class DegreeResponse(DegreeBase):
     id: str
 
     class Config:

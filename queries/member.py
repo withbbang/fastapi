@@ -1,7 +1,10 @@
 from sqlalchemy.orm import Session
+from sqlalchemy.sql import text
 from tables.member import Member
-from tables.degree import Degree
+from database.connection import con
+
 from tables.level import Level
+from tables.degree import Degree
 
 
 def get_all_members(db: Session, skip: int = 0, limit: int = 100):
@@ -9,9 +12,35 @@ def get_all_members(db: Session, skip: int = 0, limit: int = 100):
 
 
 def get_member(db: Session):
-    return (
-        db.query(Member)
-        .join(Degree, Member.degreeFK == Degree.id)
-        .join(Level, Member.levelFK == Level.id)
-        .filter(Member.id == "0")
-    )
+    data = db.execute(
+        text(
+            """
+        select
+            *
+        from
+            member m
+            join level l on m.levelFK = l.id
+            join degree d on m.degreeFK = d.id
+        """
+        )
+    ).one()
+
+    return data
+
+
+# def get_member():
+#     sqlText = text(
+#         """
+#         select
+#             *
+#         from
+#             member m
+#             join level l on m.levelFK = l.id
+#             join degree d on m.degreeFK = d.id
+#         """
+#     )
+#     member = con.execute(sqlText)
+
+#     print("data: ", member)
+
+#     return member
