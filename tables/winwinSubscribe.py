@@ -1,11 +1,12 @@
 from sqlalchemy import Column, String, ForeignKey
 from sqlalchemy.orm import relationship
 from database.connection import Base
+from tables.member import Member
 
 
 # 상생 신청 테이블
-class WinwindSubscribe(Base):
-    __tablename__ = "winwindSubscribe"
+class WinwinSubscribe(Base):
+    __tablename__ = "winwinSubscribe"
 
     id = Column(
         String,
@@ -14,5 +15,6 @@ class WinwindSubscribe(Base):
     )
     memberFK = Column(String, ForeignKey("member.id"), nullable=False)
     comment = Column(String)
+    status = Column(String, default="W")
 
-    member = relationship("Member", back_populates="member_winwindSubscribe")
+    member = relationship(Member, back_populates="member_winwinSubscribe")

@@ -1,6 +1,7 @@
 from sqlalchemy import Column, String, TIMESTAMP
 from sqlalchemy.orm import relationship
 from database.connection import Base
+from tables.meeting import Meeting
 
 
 # 암장 테이블
@@ -19,4 +20,4 @@ class ClimbingArea(Base):
     createDt = Column(TIMESTAMP)
     updateDt = Column(TIMESTAMP)
 
-    climbingArea_meeting = relationship("Meeting", back_populates="climbingArea")
+    climbingArea_meeting = relationship(Meeting, back_populates="climbingArea")

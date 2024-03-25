@@ -5,7 +5,7 @@ from datetime import date, datetime
 # 기수 모델
 class DegreenBase(BaseModel):
     degree: str
-    color: str
+    description: str
 
     # TODO: Config - 예시 파라미터
     class Config:

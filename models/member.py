@@ -6,8 +6,6 @@ from datetime import date, datetime
 class MemberBase(BaseModel):
     name: str
     birthDt: str
-    levelFK: str
-    degreeFK: str
     phoneNo: str | None = None
     winwinYn: str
     sex: str
@@ -33,6 +31,10 @@ class MemberBase(BaseModel):
 
 class MemberResponse(MemberBase):
     id: str
+    level: str
+    color: str
+    degree: str
+    description: str
 
     class Config:
         orm_mode = True

@@ -8,6 +8,10 @@ from sqlalchemy import (
 )
 from sqlalchemy.orm import relationship
 from database.connection import Base
+from tables.winwinSubscribe import WinwinSubscribe
+from tables.admin import Admin
+from tables.degree import Degree
+from tables.level import Level
 
 
 # 회원 테이블
@@ -37,8 +41,10 @@ class Member(Base):
     leaveReason = Column(String)
     banReason = Column(String)
 
-    member_winwindSubscribe = relationship("WinwindSubscribe", back_populates="member")
-    member_admin = relationship("Admin", back_populates="member")
+    member_winwinSubscribe = relationship(
+        WinwinSubscribe, back_populates="member", uselist=False
+    )
+    member_admin = relationship(Admin, back_populates="member")
 
-    level = relationship("Level", back_populates="level_member")
-    degree = relationship("Degree", back_populates="degree_member")
+    level = relationship(Level, back_populates="level_member")
+    degree = relationship(Degree, back_populates="degree_member")
