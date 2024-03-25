@@ -3,6 +3,7 @@ from sqlalchemy.orm import relationship
 from database.connection import Base
 
 
+# 기수 테이블
 class Degree(Base):
     __tablename__ = "degree"
 

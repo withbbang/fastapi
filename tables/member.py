@@ -10,6 +10,7 @@ from sqlalchemy.orm import relationship
 from database.connection import Base
 
 
+# 회원 테이블
 class Member(Base):
     __tablename__ = "member"
 

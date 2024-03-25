@@ -3,6 +3,7 @@ from sqlalchemy.orm import relationship
 from database.connection import Base
 
 
+# 암장 테이블
 class ClimbingArea(Base):
     __tablename__ = "climbingArea"
 

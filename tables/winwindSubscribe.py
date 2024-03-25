@@ -3,6 +3,7 @@ from sqlalchemy.orm import relationship
 from database.connection import Base
 
 
+# 상생 신청 테이블
 class WinwindSubscribe(Base):
     __tablename__ = "winwindSubscribe"
 

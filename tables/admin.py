@@ -3,6 +3,7 @@ from sqlalchemy.orm import relationship
 from database.connection import Base
 
 
+# 관리자 계정 테이블
 class Admin(Base):
     __tablename__ = "admin"
 

@@ -3,6 +3,7 @@ from sqlalchemy.orm import relationship
 from database.connection import Base
 
 
+# 벙 테이블
 class Meeting(Base):
     __tablename__ = "meeting"
 

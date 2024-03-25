@@ -3,6 +3,7 @@ from sqlalchemy.orm import relationship
 from database.connection import Base
 
 
+# 회원 레벨 테이블
 class Level(Base):
     __tablename__ = "level"
 

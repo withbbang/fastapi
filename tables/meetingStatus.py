@@ -3,6 +3,7 @@ from sqlalchemy.orm import relationship
 from database.connection import Base
 
 
+# 벙 상태 테이블
 class MeetingStatus(Base):
     __tablename__ = "meetingStatus"
 
