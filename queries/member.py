@@ -12,6 +12,6 @@ def get_member(db: Session):
     return (
         db.query(Member)
         .join(Degree, Member.degreeFK == Degree.id)
-        .join(Level, Member.levelFK, Level.id)
+        .join(Level, Member.levelFK == Level.id)
         .filter(Member.id == "0")
     )
