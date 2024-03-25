@@ -16,7 +16,7 @@ class Member(Base):
 
     id = Column(String, primary_key=True, unique=True, index=True)
     name = Column(String)
-    birthDt = Column(Date)
+    birthDt = Column(String)
     levelFK = Column(String, ForeignKey("level.id"), nullable=False)
     degreeFK = Column(String, ForeignKey("degree.id"), nullable=False)
     phoneNo = Column(String)
