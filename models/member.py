@@ -2,6 +2,7 @@ from pydantic import BaseModel
 from datetime import date, datetime
 
 
+# 회원 모델
 class MemberBase(BaseModel):
     name: str
     birthDt: date
