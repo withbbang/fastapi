@@ -1,6 +1,5 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
-from models.member import MemberResponse
 from models.response import ResultBase, ResponseBase
 from queries.member import get_all_members, get_member
 from database.connection import get_db
