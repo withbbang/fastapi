@@ -9,14 +9,15 @@ from utils.results import Result
 member_router = APIRouter(tags=["Member"])
 
 
-@member_router.get("/", response_model=list[MemberResponse])
-def read_all_members(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-    return get_all_members(db, skip=skip, limit=limit)
+@member_router.get("/", response_model=ResponseBase)
+def read_all_members(db: Session = Depends(get_db)):
+    result = ResultBase()
+    result.setResult(**Result.WARNING.value)
+    data = get_all_members(db)
 
+    response = ResponseBase(result=result, data=data)
 
-# @member_router.get("/0", response_model=MemberResponse)
-# def read_member(db: Session = Depends(get_db)):
-#     return get_member(db)
+    return response
 
 
 @member_router.get("/0", response_model=ResponseBase)
