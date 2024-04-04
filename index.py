@@ -24,4 +24,4 @@ app.include_router(test_router, prefix="/test")
 app.include_router(member_router, prefix="/member")
 
 if __name__ == "__index__":
-    uvicorn.run("index:app", host="127.0.0.1", port=8000, reload=True)
+    uvicorn.run(app, host="127.0.0.1", port=8000, reload=True)

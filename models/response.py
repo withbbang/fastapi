@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from typing import Any
 
 
 class ResultBase(BaseModel):
@@ -11,4 +12,4 @@ class ResultBase(BaseModel):
 
 class ResponseBase(BaseModel):
     result: ResultBase
-    data: any
+    data: Any
