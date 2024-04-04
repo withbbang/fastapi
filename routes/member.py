@@ -21,6 +21,15 @@ def read_all_members(skip: int = 0, limit: int = 100, db: Session = Depends(get_
 
 @member_router.get("/0", response_model=ResponseBase)
 def read_member(db: Session = Depends(get_db)):
+    """
+    특정 멤버 읽기 API
+
+    **Example**
+    ```python
+    from database.connection import get_db
+    ...
+    ```
+    """
     result = ResultBase()
     result.setResult(**Result.ERROR.value)
     data = get_member(db)
