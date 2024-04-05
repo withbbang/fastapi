@@ -10,6 +10,11 @@ def get_all_members_mapper():
 
 
 def get_member_mapper(id: int):
+    whereClause_id = ""
+
+    if id is not None:
+        whereClause_id = f"and m.id = {id}"
+
     return f"""
         select
             *
@@ -18,5 +23,6 @@ def get_member_mapper(id: int):
             join level l on m.levelFK = l.id
             join degree d on m.degreeFK = d.id
         where
-            m.id = {id}
-    """
+            1 = 1
+            {whereClause_id}
+        """
