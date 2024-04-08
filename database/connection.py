@@ -10,20 +10,19 @@ DATABASE_URL = os.getenv("DATABASE_URL")
 
 engine = create_engine(DATABASE_URL)
 con = engine.connect()
-SessionLocal = scoped_session(
-    sessionmaker(autocommit=False, autoflush=False, bind=engine)
-)
+Session = scoped_session(sessionmaker(autocommit=False, autoflush=False, bind=engine))
 
 Base = declarative_base()
 
 
 # Dependency
 def get_db():
-    db = SessionLocal()
+    db = Session()
     try:
         yield db
         db.commit()
     except Exception as e:
+        print(e)
         db.rollback()
         raise Exception
     finally:
