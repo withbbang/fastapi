@@ -1,8 +1,9 @@
 from fastapi import APIRouter
 from models.response import ResultBase, ResponseBase
-from queries.member import get_all_members, get_member
+from services.member import get_all_members, get_member
 from database.connection import session
 from utils.results import Result
+import time
 
 member_router = APIRouter(tags=["Member"])
 
@@ -33,6 +34,13 @@ def read_member():
     result.setResult(**Result.ERROR.value)
 
     data = get_member(session)
+
+    print(f"[*] registry: {session.registry.registry}")
+    key = session.registry.scopefunc()
+    print(f"[*] key: {key}")
+    print(f"[*] session: {session.registry.registry[key]}")
+
+    # time.sleep(5) session registry stack을 확인하기 위한 sleep
 
     response = ResponseBase(result=result, data=data)
 
