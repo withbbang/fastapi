@@ -5,10 +5,12 @@ from routes.users import user_router
 from routes.events import event_router
 from routes.member import member_router
 from database.connection import Base, engine
+from middlewares.sqlAlchemyMiddleware import SQLAlchemyMiddleware
 
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
+app.add_middleware(SQLAlchemyMiddleware)
 
 
 @app.get("/")
