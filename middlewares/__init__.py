@@ -1,5 +1,5 @@
 from fastapi.middleware import Middleware
-from middlewares.sqlAlchemyMiddleware import SQLAlchemyMiddleware
+from .sqlAlchemyMiddleware import SQLAlchemyMiddleware
 
 # add others...
 

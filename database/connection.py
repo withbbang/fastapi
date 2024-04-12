@@ -25,7 +25,6 @@ def reset_session_context(context: Token) -> None:
 
 
 engine = create_engine(DATABASE_URL)
-con = engine.connect()
 session = scoped_session(
     sessionmaker(autocommit=False, autoflush=False, bind=engine),
     scopefunc=get_session_context,

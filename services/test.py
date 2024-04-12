@@ -2,12 +2,11 @@ from sqlalchemy.orm import Session
 from sqlalchemy.sql import text
 from mappers import add_test_mapper
 from decoraters import Transactional
+import asyncio
 
 
 @Transactional()
 async def raise_add_test(db: Session):
-    import asyncio
-
     print("raise_add_test service: ", db)
     db.execute(text(add_test_mapper(4)))
 
@@ -18,7 +17,6 @@ async def raise_add_test(db: Session):
 
 @Transactional()
 async def add_test(db: Session):
-    import asyncio
 
     print("add_test service: ", db)
     db.execute(text(add_test_mapper(5)))
