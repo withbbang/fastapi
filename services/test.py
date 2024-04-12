@@ -13,7 +13,7 @@ async def raise_add_test(db: Session):
 
     await asyncio.sleep(3)
 
-    raise Exception
+    raise Exception("test error")
 
 
 @Transactional()

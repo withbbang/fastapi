@@ -11,12 +11,12 @@ class Transactional:
         async def decorator(*args, **kwargs):
             try:
                 result = await function(*args, **kwargs)
-                await session.commit()
+                session.commit()
             except Exception as e:
-                await session.rollback()
+                session.rollback()
                 raise e
             finally:
-                await session.remove()
+                session.remove()
             return result
 
         return decorator

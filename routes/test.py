@@ -13,8 +13,9 @@ async def test():
     result = ResultBase()
     result.setResult(**Result.WARNING.value)
 
-    raise_add_test(session)
-    add_test(session)
+    import asyncio
+
+    await asyncio.gather(raise_add_test(session), add_test(session))
 
     response = ResponseBase(result=result, data=None)
 
