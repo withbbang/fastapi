@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 from sqlalchemy.sql import text
-from mappers.test import add_test_mapper
-from decoraters.transactional import Transactional
+from mappers import add_test_mapper
+from decoraters import Transactional
 
 
 @Transactional()

@@ -1,6 +1,7 @@
 from sqlalchemy import Column, String, TIMESTAMP
 from sqlalchemy.orm import relationship
-from database.connection import Base
+from database import Base
+from tables import ClimbingArea, Member, MeetingStatus, Attend
 
 
 # 벙 테이블
@@ -18,10 +19,8 @@ class Meeting(Base):
     criticalMeetingYn = Column(String)
     meetingStatusFK = Column(String)
 
-    meeting_attend = relationship("Attend", back_populates="meeting")
+    meeting_attend = relationship(Attend, back_populates="meeting")
 
-    member = relationship("Member", back_populates="member_meeting")
-    climbingArea = relationship("ClimbingArea", back_populates="climbingArea_meeting")
-    meetingStatus = relationship(
-        "MeetingStatus", back_populates="meetingStatus_meeting"
-    )
+    member = relationship(Member, back_populates="member_meeting")
+    climbingArea = relationship(ClimbingArea, back_populates="climbingArea_meeting")
+    meetingStatus = relationship(MeetingStatus, back_populates="meetingStatus_meeting")

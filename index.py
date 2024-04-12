@@ -1,12 +1,11 @@
 import uvicorn
 from fastapi import FastAPI
-from routes.test import test_router
-from routes.todo import todo_router
-from routes.users import user_router
-from routes.events import event_router
-from routes.member import member_router
-from database.connection import Base, engine
-from middlewares.index import middlewares
+from routes import test_router, member_router
+from routes.todo import todo_router  # 삭제 필요
+from routes.users import user_router  # 삭제 필요
+from routes.events import event_router  # 삭제 필요
+from database import Base, engine
+from middlewares import middlewares
 
 
 Base.metadata.create_all(bind=engine)

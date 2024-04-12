@@ -7,11 +7,8 @@ from sqlalchemy import (
     TIMESTAMP,
 )
 from sqlalchemy.orm import relationship
-from database.connection import Base
-from tables.winwinSubscribe import WinwinSubscribe
-from tables.admin import Admin
-from tables.degree import Degree
-from tables.level import Level
+from database import Base
+from tables import WinwinSubscribe, Admin, Degree, Level
 
 
 # 회원 테이블

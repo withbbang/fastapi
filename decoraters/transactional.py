@@ -1,5 +1,5 @@
 from functools import wraps
-from database.connection import session
+from database import session
 
 
 class Transactional:

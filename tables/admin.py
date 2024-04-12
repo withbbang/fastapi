@@ -1,6 +1,7 @@
 from sqlalchemy import Column, String, Integer, ForeignKey
 from sqlalchemy.orm import relationship
-from database.connection import Base
+from database import Base
+from tables import Member
 
 
 # 관리자 계정 테이블
@@ -17,4 +18,4 @@ class Admin(Base):
     password = Column(String)
     grade = Column(Integer, default=50)
 
-    member = relationship("Member", back_populates="member_admin")
+    member = relationship(Member, back_populates="member_admin")

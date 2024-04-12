@@ -1,8 +1,8 @@
 from fastapi import APIRouter
-from models.response import ResultBase, ResponseBase
-from services.test import raise_add_test, add_test
-from database.connection import session
-from utils.results import Result
+from models import ResultBase, ResponseBase
+from services import raise_add_test, add_test
+from database import session
+from utils import Result
 
 test_router = APIRouter(tags=["Test"])
 

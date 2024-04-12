@@ -1,7 +1,5 @@
 from sqlalchemy import Column, String, ForeignKey
-from sqlalchemy.orm import relationship
-from database.connection import Base
-from tables.member import Member
+from database import Base
 
 
 # 참석 테이블

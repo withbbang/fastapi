@@ -1,6 +1,7 @@
 from sqlalchemy import Column, String, Integer
 from sqlalchemy.orm import relationship
-from database.connection import Base
+from database import Base
+from tables import Meeting
 
 
 # 벙 상태 테이블
@@ -14,4 +15,4 @@ class MeetingStatus(Base):
     )
     status = Column(Integer)
 
-    meetingStatus_meeting = relationship("Meeting", back_populates="meetingStatus")
+    meetingStatus_meeting = relationship(Meeting, back_populates="meetingStatus")

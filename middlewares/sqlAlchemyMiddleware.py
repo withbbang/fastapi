@@ -1,7 +1,7 @@
 from fastapi import Request
 from starlette.responses import Response
 from starlette.middleware.base import BaseHTTPMiddleware, RequestResponseEndpoint
-from database.connection import set_session_context, reset_session_context, session
+from database import set_session_context, reset_session_context, session
 from uuid import uuid4
 
 

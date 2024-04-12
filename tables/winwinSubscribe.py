@@ -1,6 +1,7 @@
 from sqlalchemy import Column, String, ForeignKey
 from sqlalchemy.orm import relationship
-from database.connection import Base
+from database import Base
+from tables import Member
 
 
 # 상생 신청 테이블
@@ -16,4 +17,4 @@ class WinwinSubscribe(Base):
     comment = Column(String)
     status = Column(String, default="W")
 
-    member = relationship("Member", back_populates="member_winwinSubscribe")
+    member = relationship(Member, back_populates="member_winwinSubscribe")

@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from sqlalchemy.sql import text
-from mappers.member import get_all_members_mapper, get_member_mapper
+from mappers import get_all_members_mapper, get_member_mapper
 
 
 def get_all_members(db: Session):

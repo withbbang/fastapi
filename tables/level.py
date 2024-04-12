@@ -1,6 +1,7 @@
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
-from database.connection import Base
+from database import Base
+from tables import Member
 
 
 # 회원 레벨 테이블
@@ -15,4 +16,4 @@ class Level(Base):
     level = Column(String)
     color = Column(String)
 
-    level_member = relationship("Member", back_populates="level")
+    level_member = relationship(Member, back_populates="level")

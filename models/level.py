@@ -1,5 +1,4 @@
 from pydantic import BaseModel
-from datetime import date, datetime
 
 
 # 회원 레벨 모델

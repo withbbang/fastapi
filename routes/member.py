@@ -1,8 +1,8 @@
 from fastapi import APIRouter
-from models.response import ResultBase, ResponseBase
-from services.member import get_all_members, get_member
-from database.connection import session
-from utils.results import Result
+from models import ResultBase, ResponseBase
+from services import get_all_members, get_member
+from database import session
+from utils import Result
 import time
 
 member_router = APIRouter(tags=["Member"])

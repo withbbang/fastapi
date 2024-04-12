@@ -1,7 +1,7 @@
 from sqlalchemy import Column, String, TIMESTAMP
 from sqlalchemy.orm import relationship
-from database.connection import Base
-from tables.meeting import Meeting
+from database import Base
+from tables import Meeting
 
 
 # 암장 테이블
