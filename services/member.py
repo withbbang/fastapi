@@ -3,13 +3,13 @@ from sqlalchemy.sql import text
 from mappers import get_all_members_mapper, get_member_mapper
 
 
-def get_all_members(db: Session):
-    data = db.execute(text(get_all_members_mapper())).all()
+async def get_all_members(db: Session):
+    data = await db.execute(text(get_all_members_mapper()))
 
-    return data
+    return data.all()
 
 
-def get_member(db: Session):
-    data = db.execute(text(get_member_mapper(0))).one()
+async def get_member(db: Session):
+    data = await db.execute(text(get_member_mapper(0)))
 
-    return data
+    return data.one()
