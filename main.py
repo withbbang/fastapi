@@ -5,23 +5,19 @@ from fastapi import FastAPI
 from routes import test_router, member_router
 from database import Base, engine
 from middlewares import middlewares
+from database.session import sessionmanager
 
 
-async def create_database():
-    async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)
-
-
-async def dispose_database():
-    await engine.dispose()
-
-
-# lifespan 레퍼런스: https://fastapi.tiangolo.com/advanced/events/#alternative-events-deprecated
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    await create_database()
+    """
+    Function that handles startup and shutdown events.
+    To understand more, read https://fastapi.tiangolo.com/advanced/events/
+    """
     yield
-    await dispose_database()
+    if sessionmanager._engine is not None:
+        # Close the DB connection
+        await sessionmanager.close()
 
 
 app = FastAPI(lifespan=lifespan, middleware=middlewares)

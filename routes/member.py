@@ -3,9 +3,23 @@ from models import ResultBase, ResponseBase
 from services import get_all_members, get_member
 from database import session
 from utils import Result
+from database.session import DBSessionDep
 import time
 
 member_router = APIRouter(tags=["Member"])
+
+
+@member_router.get("/test", response_model=ResponseBase)
+async def read_all_members_(
+    session: DBSessionDep,
+):
+    result = ResultBase()
+    result.setResult(**Result.WARNING.value)
+    data = await get_all_members(session)
+
+    response = ResponseBase(result=result, data=data)
+
+    return response
 
 
 @member_router.get("/", response_model=ResponseBase)

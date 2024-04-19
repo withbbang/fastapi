@@ -1,7 +1,7 @@
-from fastapi import Request
+from starlette.requests import Request
 from starlette.responses import Response
 from starlette.middleware.base import BaseHTTPMiddleware, RequestResponseEndpoint
-from database import set_session_context, reset_session_context, session
+from database.session import set_session_context, reset_session_context, sessionmanager
 from uuid import uuid4
 
 
@@ -20,10 +20,12 @@ class SQLAlchemyMiddleware(BaseHTTPMiddleware):
         try:
             response = await call_next(request)
         except Exception as e:
-            session.rollback()
+            async with sessionmanager.session() as session:
+                await session.rollback()
             raise e
         finally:
-            session.remove()
+            async with sessionmanager.session() as session:
+                await session.close()
             reset_session_context(context=context)
 
         return response

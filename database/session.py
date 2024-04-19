@@ -1,7 +1,7 @@
 import os
 import contextlib
 from dotenv import load_dotenv
-from typing import Any, AsyncIterator
+from typing import Annotated, AsyncIterator
 from contextvars import ContextVar, Token
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.asyncio import (
@@ -12,6 +12,7 @@ from sqlalchemy.ext.asyncio import (
     create_async_engine,
 )
 from sqlalchemy.orm import declarative_base
+from fastapi import Depends
 
 load_dotenv()
 
@@ -38,7 +39,7 @@ class DatabaseSessionManager:
     def __init__(self, host: str):
         self._engine = create_async_engine(host, pool_recycle=3600, echo=True)
         # self._sessionmaker = async_sessionmaker(autocommit=False, bind=self._engine)
-        self._sessionmaker = sessionmaker(
+        self._sessionmaker = async_sessionmaker(
             autocommit=False, autoflush=False, bind=self._engine, class_=AsyncSession
         )
         self._session = async_scoped_session(
@@ -52,6 +53,7 @@ class DatabaseSessionManager:
 
         self._engine = None
         self._sessionmaker = None
+        self._session = None
 
     @contextlib.asynccontextmanager
     async def connect(self) -> AsyncIterator[AsyncConnection]:
@@ -67,10 +69,10 @@ class DatabaseSessionManager:
 
     @contextlib.asynccontextmanager
     async def session(self) -> AsyncIterator[AsyncSession]:
-        if self._sessionmaker is None:
+        if self._session is None:
             raise Exception("DatabaseSessionManager is not initialized")
 
-        session = self._sessionmaker()
+        session = self._session()
         try:
             yield session
         except Exception:
@@ -86,3 +88,6 @@ sessionmanager = DatabaseSessionManager(DATABASE_URL)
 async def get_db_session():
     async with sessionmanager.session() as session:
         yield session
+
+
+DBSessionDep = Annotated[AsyncSession, Depends(get_db_session)]
