@@ -3,9 +3,8 @@ import asyncio
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from routes import test_router, member_router
-from database import Base, engine
 from middlewares import middlewares
-from database.session import sessionmanager
+from database import sessionmanager
 
 
 @asynccontextmanager

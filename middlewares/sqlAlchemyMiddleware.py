@@ -1,7 +1,7 @@
 from starlette.requests import Request
 from starlette.responses import Response
 from starlette.middleware.base import BaseHTTPMiddleware, RequestResponseEndpoint
-from database.session import set_session_context, reset_session_context, sessionmanager
+from database import set_session_context, reset_session_context, sessionmanager
 from uuid import uuid4
 
 

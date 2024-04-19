@@ -1,19 +1,19 @@
-from .connection import (
+from .session import (
     Base,
-    engine,
-    session,
     get_session_context,
     set_session_context,
     reset_session_context,
+    get_db_session,
     session_context,
+    sessionmanager,
 )
 
 __all__ = [
     "Base",
-    "engine",
-    "session",
     "get_session_context",
     "set_session_context",
     "reset_session_context",
+    "get_db_session",
     "session_context",
+    "sessionmanager",
 ]

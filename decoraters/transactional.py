@@ -1,5 +1,5 @@
 from functools import wraps
-from database import session
+from database import sessionmanager
 
 
 class Transactional:
@@ -11,12 +11,16 @@ class Transactional:
         async def decorator(*args, **kwargs):
             try:
                 result = await function(*args, **kwargs)
-                session.commit()
+                async with sessionmanager.session() as session:
+                    await session.commit()
             except Exception as e:
-                session.rollback()
+                async with sessionmanager.session() as session:
+                    await session.rollback()
                 raise e
             finally:
-                session.remove()
+                async with sessionmanager.session() as session:
+                    await session.remove()
+
             return result
 
         return decorator

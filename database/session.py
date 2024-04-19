@@ -1,9 +1,9 @@
 import os
 import contextlib
+from fastapi import Depends
 from dotenv import load_dotenv
 from typing import Annotated, AsyncIterator
 from contextvars import ContextVar, Token
-from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.asyncio import (
     AsyncConnection,
     AsyncSession,
@@ -12,7 +12,6 @@ from sqlalchemy.ext.asyncio import (
     create_async_engine,
 )
 from sqlalchemy.orm import declarative_base
-from fastapi import Depends
 
 load_dotenv()
 
@@ -88,6 +87,3 @@ sessionmanager = DatabaseSessionManager(DATABASE_URL)
 async def get_db_session():
     async with sessionmanager.session() as session:
         yield session
-
-
-DBSessionDep = Annotated[AsyncSession, Depends(get_db_session)]
