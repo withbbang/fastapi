@@ -1,8 +1,7 @@
 import os
 import contextlib
-from fastapi import Depends
 from dotenv import load_dotenv
-from typing import Annotated, AsyncIterator
+from typing import AsyncIterator
 from contextvars import ContextVar, Token
 from sqlalchemy.ext.asyncio import (
     AsyncConnection,

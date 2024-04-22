@@ -19,7 +19,7 @@ class Transactional:
                 raise e
             finally:
                 async with sessionmanager.session() as session:
-                    await session.remove()
+                    await session.close()
 
             return result
 
