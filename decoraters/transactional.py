@@ -12,9 +12,11 @@ class Transactional:
             try:
                 result = await function(*args, **kwargs)
                 async with sessionmanager.session() as session:
+                    print("commit visited? ", session)
                     await session.commit()
             except Exception as e:
                 async with sessionmanager.session() as session:
+                    print("rollback visited? ", session)
                     await session.rollback()
                 raise e
             finally:
