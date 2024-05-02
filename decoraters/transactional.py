@@ -15,12 +15,13 @@ class Transactional:
                     print("commit visited? ", session)
                     await session.commit()
             except Exception as e:
+                print("exception visited? ", e)
                 async with sessionmanager.session() as session:
-                    print("rollback visited? ", session)
                     await session.rollback()
                 raise e
             finally:
                 async with sessionmanager.session() as session:
+                    print("close visited? ", session)
                     await session.close()
 
             return result

@@ -19,11 +19,13 @@ class SQLAlchemyMiddleware(BaseHTTPMiddleware):
 
         try:
             response = await call_next(request)
+            print("response: ", response)
         except Exception as e:
             async with sessionmanager.session() as session:
                 await session.rollback()
             raise e
         finally:
+            print("middleware close visited? ", sessionmanager._engine)
             async with sessionmanager.session() as session:
                 await session.close()
             reset_session_context(context=context)
