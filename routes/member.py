@@ -18,6 +18,8 @@ async def read_all_members_(
 
     response = ResponseBase(result=result, data=data)
 
+    print("router visit?")
+
     return response
 
 

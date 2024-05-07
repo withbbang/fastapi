@@ -13,11 +13,13 @@ test_router = APIRouter(tags=["Test"])
 @test_router.post("/", response_model=ResponseBase)
 @Transactional()
 async def test(session: session):
+    # await asyncio.gather(raise_add_test(session), add_test(session))
+
+    await add_test(session)
+    await raise_add_test(session)
+
     result = ResultBase()
     result.setResult(**Result.WARNING.value)
-
-    await asyncio.gather(raise_add_test(session), add_test(session))
-
     response = ResponseBase(result=result, data=None)
 
     return response
