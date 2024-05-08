@@ -1,6 +1,10 @@
 from fastapi.middleware import Middleware
 from .sqlAlchemyMiddleware import SQLAlchemyMiddleware
+from .responseSettingMiddleware import ResponseSettingMiddleware
 
-# add others...
-
-middlewares = [Middleware(SQLAlchemyMiddleware)]
+# 밑에서부터 위 순서로 처리
+middlewares = [
+    # add others...
+    Middleware(ResponseSettingMiddleware),
+    Middleware(SQLAlchemyMiddleware),
+]
