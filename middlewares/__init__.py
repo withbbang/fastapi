@@ -1,8 +1,8 @@
 from fastapi.middleware import Middleware
-from starlette.middleware.cors import CORSMiddleware
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.trustedhost import TrustedHostMiddleware
 from .sqlAlchemyMiddleware import SQLAlchemyMiddleware
 from .responseSettingMiddleware import ResponseSettingMiddleware
-from starlette.middleware.trustedhost import TrustedHostMiddleware
 
 # 밑에서부터 위 순서로 처리
 middlewares = [
