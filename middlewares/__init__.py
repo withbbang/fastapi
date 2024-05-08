@@ -10,7 +10,7 @@ middlewares = [
     Middleware(  # API 에러 처리 여부에 따른 응답값 설정 미들웨어
         ResponseSettingMiddleware
     ),
-    Middleware(SQLAlchemyMiddleware),  # 세션 할당 미들웨어
+    Middleware(SQLAlchemyMiddleware),  # DB 세션 처리 미들웨어
     Middleware(  # CORS 미들웨어
         CORSMiddleware,
         allow_origins=["http://localhost:8000"],
