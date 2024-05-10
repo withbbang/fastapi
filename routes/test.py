@@ -23,3 +23,12 @@ async def test(session: session):
     response = ResponseBase(result=result, data=None)
 
     return response
+
+
+@test_router.get("/", response_model=ResponseBase)
+def test():
+    result = ResultBase()
+    result.setResult(**Result.INFO.value)
+    response = ResponseBase(result=result, data=None)
+
+    return response
