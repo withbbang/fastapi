@@ -20,7 +20,8 @@ class ResponseSettingMiddleware(BaseHTTPMiddleware):
 
         try:
             response = await call_next(request)
-        except Exception:
+        except Exception as e:
+            print(f"Error: {e}")
             result = ResultBase()
             result.setResult(**Result.ERROR.value)
             response_base = ResponseBase(result=result, data=None)

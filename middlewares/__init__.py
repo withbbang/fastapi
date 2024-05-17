@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.trustedhost import TrustedHostMiddleware
 from .sqlAlchemyMiddleware import SQLAlchemyMiddleware
 from .responseSettingMiddleware import ResponseSettingMiddleware
+from .loggingMiddleware import LoggingMiddleware
 
 # 밑에서부터 위 순서로 처리
 middlewares = [
@@ -11,6 +12,7 @@ middlewares = [
         ResponseSettingMiddleware
     ),
     Middleware(SQLAlchemyMiddleware),  # DB 세션 처리 미들웨어
+    Middleware(LoggingMiddleware),
     Middleware(  # CORS 미들웨어
         CORSMiddleware,
         allow_origins=["http://localhost:8000"],
