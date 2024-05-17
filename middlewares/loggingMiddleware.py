@@ -1,8 +1,7 @@
+import json
 from starlette.requests import Request
-from starlette.responses import Response, JSONResponse
+from starlette.responses import Response
 from starlette.middleware.base import BaseHTTPMiddleware, RequestResponseEndpoint
-from utils import Result
-from models import ResultBase, ResponseBase
 
 
 # API 에러 처리 여부에 따른 응답값 설정 미들웨어
@@ -17,7 +16,14 @@ class LoggingMiddleware(BaseHTTPMiddleware):
     ) -> Response:
         request_body = await request.body()
 
-        print(f"request body: {request_body.decode('utf-8')}")
+        if request_body:
+            try:
+                request_body_json = json.loads(request_body)
+                pretty_request_body = json.dumps(request_body_json, indent=2)
+            except json.JSONDecodeError:
+                pretty_request_body = request_body.decode("utf-8")
+
+            print(f"Request: {pretty_request_body}")
 
         response = await call_next(request)
 
@@ -25,7 +31,13 @@ class LoggingMiddleware(BaseHTTPMiddleware):
         async for chunk in response.body_iterator:
             response_body += chunk
 
-        print(f"response body: {response_body.decode('utf-8')}")
+        try:
+            response_body_json = json.loads(response_body)
+            pretty_response_body = json.dumps(response_body_json, indent=2)
+        except json.JSONDecodeError:
+            pretty_response_body = response_body.decode("utf-8")
+
+        print(f"Response: {pretty_response_body}")
 
         # Return the response with the new body iterator
         return Response(
