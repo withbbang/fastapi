@@ -1,7 +1,20 @@
 import json
+import logging
 from starlette.requests import Request
 from starlette.responses import Response
 from starlette.middleware.base import BaseHTTPMiddleware, RequestResponseEndpoint
+
+logger = logging.getLogger("FASTAPI")
+
+logging.basicConfig(level=logging.DEBUG)
+formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+
+stream_hander = logging.StreamHandler()
+stream_hander.setFormatter(formatter)
+logger.addHandler(stream_hander)
+
+file_handler = logging.FileHandler("FASTAPI.log", mode="w")
+logger.addHandler(file_handler)
 
 
 # API 에러 처리 여부에 따른 응답값 설정 미들웨어
@@ -23,7 +36,7 @@ class LoggingMiddleware(BaseHTTPMiddleware):
             except json.JSONDecodeError:
                 pretty_request_body = request_body.decode("utf-8")
 
-            print(f"Request: {pretty_request_body}")
+            logging.info(f"Request: {pretty_request_body}")
 
         response = await call_next(request)
 
@@ -37,9 +50,8 @@ class LoggingMiddleware(BaseHTTPMiddleware):
         except json.JSONDecodeError:
             pretty_response_body = response_body.decode("utf-8")
 
-        print(f"Response: {pretty_response_body}")
+        logging.info(f"Response: {pretty_response_body}")
 
-        # Return the response with the new body iterator
         return Response(
             content=response_body,
             status_code=response.status_code,
