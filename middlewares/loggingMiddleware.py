@@ -6,7 +6,7 @@ from starlette.middleware.base import BaseHTTPMiddleware, RequestResponseEndpoin
 
 logger = logging.getLogger("FASTAPI")
 
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(filename="FASTAPI.log", level=logging.DEBUG)
 formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 
 stream_hander = logging.StreamHandler()

@@ -1,0 +1,55 @@
+DEBUG:aiomysql:caching sha2: succeeded by fast path.
+INFO:sqlalchemy.engine.Engine:SELECT DATABASE()
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:SELECT @@sql_mode
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:SELECT @@lower_case_table_names
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:
+        select
+            *
+        from
+            member m
+            join level l on m.levelFK = l.id
+            join degree d on m.degreeFK = d.id
+        
+INFO:sqlalchemy.engine.Engine:[generated in 0.00041s] ()
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:root:Response: {
+  "result": {
+    "code": "999997",
+    "message": "warning"
+  },
+  "data": [
+    {
+      "name": "\uc0c1\ub0a8\uc790",
+      "birthDt": "",
+      "phoneNo": null,
+      "winwinYn": "Y",
+      "sex": "M",
+      "blackCnt": 0,
+      "dormancyYn": "N",
+      "leaveYn": "N",
+      "banYn": "N",
+      "joinDt": "2024-03-25",
+      "createDt": "2024-03-25T06:54:42",
+      "updateDt": null,
+      "leaveDt": null,
+      "banDt": null,
+      "image": null,
+      "updateReason": null,
+      "dormancyReason": null,
+      "leaveReason": null,
+      "banReason": null,
+      "id": "3",
+      "level": "V5",
+      "color": "#000088",
+      "degree": "3\uae30",
+      "description": ""
+    }
+  ]
+}
+INFO:root:Response: {
+  "detail": "Not Found"
+}
