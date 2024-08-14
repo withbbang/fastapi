@@ -6,6 +6,6 @@
   "python.linting.enabled": true,
   "python.linting.lintOnSave": true,
   "[python]": {
-    "editor.defaultFormatter": "ms-python.python"
+    "editor.defaultFormatter": "ms-python.black-formatter"
   }
 }
